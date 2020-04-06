@@ -1,0 +1,98 @@
+
+{% extends 'navbar.html' %}
+
+{% block input %}
+
+
+<style>
+  .second-nav-left{
+    height: 8%;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 5px 5px rgb(37, 37, 37);
+    text-align: left;
+    margin-bottom: 1%;
+    font-size: large;
+    margin-right: 2%;
+  }
+  .second-nav-center{
+    text-align: center;
+    position: relative;
+    bottom: 6.2rem;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+  .second-nav-right{
+    text-align: right;
+    position: relative;
+    bottom: 9.8rem;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+</style>
+
+
+
+<div class="second-nav-left">
+  <button class="btn btn-success" style="position: relative; bottom: 1rem;">
+    <i class="facebook icon"></i>
+    Availaible Students: {{total_count}}
+  </button>
+</div>
+  <div class="second-nav-center">
+    <a class="btn btn-primary" href="/pass" role="button">
+  Passed Students: {{count_pass}}
+</a>
+  </div>
+  <div class="second-nav-right">
+    <a class="btn btn-danger" href="/fail" role="button">
+      Failed Student: {{count_fail}}
+    </a>
+  </div>
+    <div class="container">
+    
+  <form action="">
+  <div class="alert alert-info">
+      <center><strong>Success!</strong> The Result of <strong>{{semister}}</strong>th Sem <strong>{{mse}}</strong>st Mse <strong>{{year}}</strong> Year is fetched from database 
+      <br></div></center>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="export" type="button" class="btn btn-success">Export To CSV</a>
+        <a href="/charts" type="button" class="btn btn-info">Show In Graph</a>
+      </div>
+
+
+    <table class="ui selectable inverted table" style="color: white; font-size: medium; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">USN</th>
+      <th scope="col">SEM</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Marks</th>
+      <th scope="col">Year</th>
+      <th scope="col">Result</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for data in database %}
+    <tr>
+      <td>{{data.name}}</td>
+      <td>{{data.usn}}</td>
+      <td>{{data.sem}}</td>
+      <td>{{data.subject}}</td>
+      <td>30 / {{data.marks}}</td>
+      <td>{{data.year}}</td>
+      {% if data.marks > '12' %}
+      <td style="background-color:green">Pass</td>
+      {% else %}
+      <td style="background-color:red"> Fail </td>
+      {% endif %}
+    </tr>
+     {% endfor %}
+  </tbody>
+</table>
+</div>
+ 
+
+
+{% endblock input %}

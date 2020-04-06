@@ -1,0 +1,941 @@
+{% extends 'navbar.html' %}
+{% block input %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+{% for mark in marks  %}
+{{mark.marks}}
+{% endfor %}
+
+
+{% if s1_count %}
+{% set total = [0]%}
+{% for Subject1 in s1 %}
+{% set _ = total.append(total.pop() + Subject1.marks|int) %}
+{% endfor %}
+{% set avg_subject1 = total[0] / s1_count %}
+{% endif %}
+
+{% if s2_count %}
+{% set total = [0]%}
+{% for Subject2 in s2 %}
+{% set _ = total.append(total.pop() + Subject2.marks|int) %}
+{% endfor %}
+{% set avg_subject2 = total[0] / s2_count %}
+{% endif %}
+
+{% if s3_count %}
+{% set total = [0]%}
+{% for Subject3 in s3 %}
+{% set _ = total.append(total.pop() + Subject3.marks|int) %}
+{% endfor %}
+{% set avg_subject3 = total[0] / s3_count %}
+{% endif %}
+
+{% if s4_count %}
+{% set total = [0]%}
+{% for Subject4 in s4 %}
+{% set _ = total.append(total.pop() + Subject4.marks|int) %}
+{% endfor %}
+{% set avg_subject4 = total[0] / s4_count %}
+{% endif %}
+
+
+
+{% if s5_count %}
+{% set total = [0] %}
+{% for Subject5 in s5 %}
+{% set _ = total.append(total.pop() + Subject5.marks|int) %}
+{% endfor %}
+{% set avg_subject5 = total[0] / s5_count %}
+{% endif %}
+
+
+{% if s6_count %}
+{% set total = [0]%}
+{% for Subject6 in s6 %}
+{% set _ = total.append(total.pop() + Subject6.marks|int) %}
+{% endfor %}
+{% set avg_subject6 = total[0] / s6_count %}
+{% endif %}
+
+{% if s7_count %}
+{% set total = [0]%}
+{% for Subject7 in s7 %}
+{% set _ = total.append(total.pop() + Subject7.marks|int) %}
+{% endfor %}
+{% set avg_subject7 = total[0] / s7_count %}
+{% endif %}
+
+{% if s8_count %}
+{% set total = [0]%}
+{% for Subject8 in s8 %}
+{% set _ = total.append(total.pop() + Subject8.marks|int) %}
+{% endfor %}
+{% set avg_subject8 = total[0] / s8_count %}
+{% endif %}
+
+{% if s9_count %}
+{% set total = [0]%}
+{% for Subject9 in s9 %}
+{% set _ = total.append(total.pop() + Subject9.marks|int) %}
+{% endfor %}
+{% set avg_subject9 = total[0] / s9_count %}
+{% endif %}
+
+{% if s10_count %}
+{% set total = [0]%}
+{% for Subject10 in s10 %}
+{% set _ = total.append(total.pop() + Subject10.marks|int) %}
+{% endfor %}
+{% set avg_subject10 = total[0] / s10_count %}
+{% endif %}
+
+{% if s11_count %}
+{% set total = [0]%}
+{% for Subject11 in s11 %}
+{% set _ = total.append(total.pop() + Subject11.marks|int) %}
+{% endfor %}
+{% set avg_subject11 = total[0] / s11_count %}
+{% endif %}
+
+{% if s12_count %}
+{% set total = [0]%}
+{% for Subject12 in s12 %}
+{% set _ = total.append(total.pop() + Subject12.marks|int) %}
+{% endfor %}
+{% set avg_subject12 = total[0] / s12_count %}
+{% endif %}
+
+{% if s13_count %}
+{% set total = [0]%}
+{% for Subject13 in s13 %}
+{% set _ = total.append(total.pop() + Subject13.marks|int) %}
+{% endfor %}
+{% set avg_subject13 = total[0] / s13_count %}
+{% endif %}
+
+{% if s14_count %}
+{% set total = [0]%}
+{% for Subject14 in s14 %}
+{% set _ = total.append(total.pop() + Subject14.marks|int) %}
+{% endfor %}
+{% set avg_subject14 = total[0] / s14_count %}
+{% endif %}
+
+{% if s15_count %}
+{% set total = [0]%}
+{% for Subject15 in s15 %}
+{% set _ = total.append(total.pop() + Subject15.marks|int) %}
+{% endfor %}
+{% set avg_subject15 = total[0] / s15_count %}
+{% endif %}
+
+
+
+
+{% if subject_count == 1 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA']
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+{% endif %}
+
+
+{% if subject_count == 2 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515']
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+{% endif %}
+
+
+{% if subject_count == 3 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515'],
+        ['{{subjects[3]}}', {{avg_subject4}}, 'stroke-color: #703593; stroke-width: 4; fill-color: #8BEC15 ']
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+
+{% endif %}
+
+{% if subject_count == 4 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515'],
+        ['{{subjects[3]}}', {{avg_subject4}}, 'stroke-color: #703593; stroke-width: 4; fill-color: #8BEC15 '],
+        ['{{subjects[4]}}', {{avg_subject5}}, 'color: #A6DEC8;']
+
+
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+
+{% endif %}
+
+{% if subject_count == 5 %}
+
+
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515'],
+        ['{{subjects[3]}}', {{avg_subject4}}, 'stroke-color: #703593; stroke-width: 4; fill-color: #8BEC15 '],
+        ['{{subjects[4]}}', {{avg_subject5}}, 'color: #A6DEC8;'],
+        ['{{subjects[5]}}', {{avg_subject6}}, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2']
+
+
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+
+
+{% endif %}
+
+{% if subject_count == 6 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515'],
+        ['{{subjects[3]}}', {{avg_subject4}}, 'stroke-color: #703593; stroke-width: 4; fill-color: #8BEC15 '],
+        ['{{subjects[4]}}', {{avg_subject5}}, 'color: #A6DEC8;'],
+        ['{{subjects[5]}}', {{avg_subject6}}, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+        ['{{subjects[6]}}', {{avg_subject7}}, 'color: #036962 ;']
+
+
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+
+{% endif %}
+
+
+
+
+
+{% if subject_count == 7 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515'],
+        ['{{subjects[3]}}', {{avg_subject4}}, 'stroke-color: #703593; stroke-width: 4; fill-color: #8BEC15 '],
+        ['{{subjects[4]}}', {{avg_subject5}}, 'color: #A6DEC8;'],
+        ['{{subjects[5]}}', {{avg_subject6}}, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+        ['{{subjects[6]}}', {{avg_subject7}}, 'color: #fecfef ;'],
+        ['{{subjects[7]}}', {{avg_subject8}}, 'color: #430369 ;']
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+{% endif %}
+
+{% if subject_count == 8 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515'],
+        ['{{subjects[3]}}', {{avg_subject4}}, 'stroke-color: #703593; stroke-width: 4; fill-color: #8BEC15 '],
+        ['{{subjects[4]}}', {{avg_subject5}}, 'color: #A6DEC8;'],
+        ['{{subjects[5]}}', {{avg_subject6}}, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+        ['{{subjects[6]}}', {{avg_subject7}}, 'color: #036962 ;'],
+        ['{{subjects[7]}}', {{avg_subject8}}, 'color: #430369 ;'],
+        ['', {{avg_subject9}}, 'color: #0000FF ;']
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+
+{% endif %}
+
+{% if subject_count == 9 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515'],
+        ['{{subjects[3]}}', {{avg_subject4}}, 'stroke-color: #703593; stroke-width: 4; fill-color: #8BEC15 '],
+        ['{{subjects[4]}}', {{avg_subject5}}, 'color: #A6DEC8;'],
+        ['{{subjects[5]}}', {{avg_subject6}}, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+        ['{{subjects[6]}}', {{avg_subject7}}, 'color: #036962 ;'],
+        ['{{subjects[7]}}', {{avg_subject8}}, 'color: #430369 ;'],
+        ['{{subjects[8]}}', {{avg_subject9}}, 'color: #00FF00;'],
+        ['{{subjects[9]}}', {{avg_subject10}}, 'color: #1A81CA ;']
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+
+{% endif %}
+
+{% if subject_count == 10 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515'],
+        ['{{subjects[3]}}', {{avg_subject4}}, 'stroke-color: #703593; stroke-width: 4; fill-color: #8BEC15 '],
+        ['{{subjects[4]}}', {{avg_subject5}}, 'color: #A6DEC8;'],
+        ['{{subjects[5]}}', {{avg_subject6}}, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+        ['{{subjects[6]}}', {{avg_subject7}}, 'color: #036962 ;'],
+        ['{{subjects[7]}}', {{avg_subject8}}, 'color: #430369 ;'],
+        ['{{subjects[8]}}', {{avg_subject9}}, 'color: #00FF00;'],
+        ['{{subjects[9]}}', {{avg_subject10}}, 'color: #1A81CA ;'],
+        ['{{subjects[10]}}', {{avg_subject11}}, 'color: #1A81CA ;']
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+
+{% endif %}
+
+{% if subject_count == 11 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515'],
+        ['{{subjects[3]}}', {{avg_subject4}}, 'stroke-color: #703593; stroke-width: 4; fill-color: #8BEC15 '],
+        ['{{subjects[4]}}', {{avg_subject5}}, 'color: #A6DEC8;'],
+        ['{{subjects[5]}}', {{avg_subject6}}, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+        ['{{subjects[6]}}', {{avg_subject7}}, 'color: #036962 ;'],
+        ['{{subjects[7]}}', {{avg_subject8}}, 'color: #430369 ;'],
+        ['{{subjects[8]}}', {{avg_subject9}}, 'color: #00FF00;'],
+        ['{{subjects[9]}}', {{avg_subject10}}, 'color: #1A81CA ;'],
+        ['{{subjects[10]}}', {{avg_subject11}}, 'color: #1A81CA ;'],
+        ['{{subjects[11]}}', {{avg_subject12}}, 'color: #059A28 ;']
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+
+{% endif %}
+
+{% if subject_count == 12 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515'],
+        ['{{subjects[3]}}', {{avg_subject4}}, 'stroke-color: #703593; stroke-width: 4; fill-color: #8BEC15 '],
+        ['{{subjects[4]}}', {{avg_subject5}}, 'color: #A6DEC8;'],
+        ['{{subjects[5]}}', {{avg_subject6}}, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+        ['{{subjects[6]}}', {{avg_subject7}}, 'color: #036962 ;'],
+        ['{{subjects[7]}}', {{avg_subject8}}, 'color: #430369 ;'],
+        ['{{subjects[8]}}', {{avg_subject9}}, 'color: #00FF00;'],
+        ['{{subjects[9]}}', {{avg_subject10}}, 'color: #1A81CA ;'],
+        ['{{subjects[10]}}', {{avg_subject11}}, 'color: #1A81CA ;'],
+        ['{{subjects[11]}}', {{avg_subject12}}, 'color: #059A28 ;'],
+        ['{{subjects[12]}}', {{avg_subject13}}, 'color: #BF6B13  ;']
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+
+{% endif %}
+
+{% if subject_count == 13 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515'],
+        ['{{subjects[3]}}', {{avg_subject4}}, 'stroke-color: #703593; stroke-width: 4; fill-color: #8BEC15 '],
+        ['{{subjects[4]}}', {{avg_subject5}}, 'color: #A6DEC8;'],
+        ['{{subjects[5]}}', {{avg_subject6}}, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+        ['{{subjects[6]}}', {{avg_subject7}}, 'color: #036962 ;'],
+        ['{{subjects[7]}}', {{avg_subject8}}, 'color: #430369 ;'],
+        ['{{subjects[8]}}', {{avg_subject9}}, 'color: #00FF00;'],
+        ['{{subjects[9]}}', {{avg_subject10}}, 'color: #1A81CA ;'],
+        ['{{subjects[10]}}', {{avg_subject11}}, 'color: #1A81CA ;'],
+        ['{{subjects[11]}}', {{avg_subject12}}, 'color: #059A28 ;'],
+        ['{{subjects[12]}}', {{avg_subject13}}, 'color: #BF6B13  ;'],
+        ['{{subjects[13]}}', {{avg_subject14}}, 'color: #B7BA8A   ;']
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+
+{% endif %}
+
+{% if subject_count == 14 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515'],
+        ['{{subjects[3]}}', {{avg_subject4}}, 'stroke-color: #703593; stroke-width: 4; fill-color: #8BEC15 '],
+        ['{{subjects[4]}}', {{avg_subject5}}, 'color: #A6DEC8;'],
+        ['{{subjects[5]}}', {{avg_subject6}}, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+        ['{{subjects[6]}}', {{avg_subject7}}, 'color: #036962 ;'],
+        ['{{subjects[7]}}', {{avg_subject8}}, 'color: #430369 ;'],
+        ['{{subjects[8]}}', {{avg_subject9}}, 'color: #00FF00;'],
+        ['{{subjects[9]}}', {{avg_subject10}}, 'color: #1A81CA ;'],
+        ['{{subjects[10]}}', {{avg_subject11}}, 'color: #1A81CA ;'],
+        ['{{subjects[11]}}', {{avg_subject12}}, 'color: #059A28 ;'],
+        ['{{subjects[12]}}', {{avg_subject13}}, 'color: #BF6B13 ;'],
+        ['{{subjects[13]}}', {{avg_subject14}}, 'color: #B7BA8A ;'],
+        ['{{subjects[14]}}', {{avg_subject15}}, 'color: #B7BA8A ;']
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+{% endif %}
+
+{% if subject_count == 15 %}
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+    <h2 class="display-4">Subjectwise Average Marks Of Student</h2>
+    <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+    <hr class="my-4">
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'Percentage', { role: 'style' } ],
+        ['{{subjects[0]}}', {{avg_subject1}}, 'color: gray'],
+        ['{{subjects[1]}}', {{avg_subject2}}, 'color: #76A7FA'],
+        ['{{subjects[2]}}', {{avg_subject3}}, 'color: #F31515'],
+        ['{{subjects[3]}}', {{avg_subject4}}, 'stroke-color: #703593; stroke-width: 4; fill-color: #8BEC15 '],
+        ['{{subjects[4]}}', {{avg_subject5}}, 'color: #A6DEC8;'],
+        ['{{subjects[5]}}', {{avg_subject6}}, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+        ['{{subjects[6]}}', {{avg_subject7}}, 'color: #036962 ;'],
+        ['{{subjects[7]}}', {{avg_subject8}}, 'color: #430369 ;'],
+        ['{{subjects[8]}}', {{avg_subject9}}, 'color: #00FF00;'],
+        ['{{subjects[9]}}', {{avg_subject10}}, 'color: #1A81CA ;'],
+        ['{{subjects[10]}}', {{avg_subject11}}, 'color: #1A81CA ;'],
+        ['{{subjects[11]}}', {{avg_subject12}}, 'color: #059A28 ;'],
+        ['{{subjects[12]}}', {{avg_subject13}}, 'color: #BF6B13 ;'],
+        ['{{subjects[13]}}', {{avg_subject14}}, 'color: #B7BA8A ;'],
+        ['{{subjects[14]}}', {{avg_subject15}}, 'color: #B7BA8A ;'],
+        ['{{subjects[15]}}', {{avg_subject16}}, 'color: #5792DF  ;']
+      ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "Average Student Marks Subjectvise Chart",
+      width: 1000,
+      height: 600,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  </div>
+</div>
+{% endif %}
+
+
+
+
+
+
+
+
+<div class="container">
+<div class="jumbotron" style="height: 110%;">
+<h2 class="display-4">Grade Chart</h2>
+<div id="piechart"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Distinction', 2],
+  ['First Class', 6],
+  ['Second Class', 2],
+  ['Pass', 1],
+  ['Fail', 1],
+
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'', 'width':550, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+</div>
+</div>
+
+
+
+
+{% endblock  %}}
