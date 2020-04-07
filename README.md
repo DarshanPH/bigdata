@@ -42,7 +42,7 @@ Welcome to Co Mapping, We make all the mse calculations, very easy by implementi
      Database: MongoDb
         
 # What We Done:
-One who using this web software need to upload the excel sheet by entering all the information, Then the software make all the <b> co </b> related calculation itself. I will explain one by one in the below section
+One who using this web software need to upload the excel sheet by entering all the information, Then the software make all the <b> co </b> related calculation itself. detail explain is available on the the below section.
 
 # Excel Format:
 ![](images/Excel-Format.png)
