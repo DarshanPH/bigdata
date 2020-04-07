@@ -88,12 +88,10 @@ def result():
     fail = db.collection.find( { "marks": { "$in": ["0","1","2","3","4","5","6","7","8","9","10","11","12"]}})
     pand_fail = pandas.Series(list(fail))
     count_fail = pand_fail.count()
-    print(count_fail)
     
     passed = db.collection.find( { "marks": { "$in": ["12","13","14","15","16","17","18","19","20","21","22","23","24","25"]}})
     pand_pass = pandas.Series(list(passed))
     count_pass = pand_pass.count()
-    print(count_pass)
     
     return render_template("student.html",database=result,semister=semister,mse=mse,year=year,total_count=total_count,total=total,count_pass=count_pass,count_fail=count_fail)
 
