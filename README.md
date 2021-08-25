@@ -1,4 +1,4 @@
-# CO MAPPING
+# CO(Course Outcome) MAPPING
 Welcome to Co Mapping, We make all the mse calculations, very easy by implementing this project,
 
 # Installation:
